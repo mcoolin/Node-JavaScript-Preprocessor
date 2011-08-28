@@ -2,7 +2,7 @@
   "author": "Mike Coolin <mcoolin@techie.com> (www.coolwebdevelopment.ca)",
   "name": "Node-JavaScript-Preprocessor",
   "description": "A preprocessor for Javascript that supports defines, if else endif and includes.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "homepage": "http://coolwebdevelopment.ca/wordpress/index.php/developers-area/javascript/node-javascript-preprocessor/",
   "repository": {
     "type": "git",
@@ -15,6 +15,6 @@
   "engines": {
     "node": "~v0.4.11"
   },
-  "dependencies": {},
+  "dependencies": { "tav" : "1.0.0 - 2.9999.9999"},
   "devDependencies": {}
 }
