@@ -1,1 +1,170 @@
-Notes go here
+pp.js
+
+Purpose:
+
+This preprocessor is used to build JavaScript files together into a single file
+while enabling various features.
+
+I have elected to provide a suset of what the original C preprocessor does. I choose
+to implement in nodejs because I am trying to learn node. I am in the middle of
+building a couple of projects and found I have a need to frequently do this kind
+of manipulation and my tools were limited.
+
+Guiding principles:
+1)  Unobtusive, I did not want any positional sensitivity so my code was still easy
+    to read.
+2)  I wanted to use a marker that would not interfere with javascript in any way
+3)  I wanted to easily see what file and what code was in effect and what was left
+    out
+4)  I wanted to prevent infinite loops through inclusion
+5)  A single source file could produce output suitable for testing, production,
+    and other environments
+
+Commands:
+Commands are not case sensitive, files names may be. Defined variable are case sensitive.
+Commands are placed anywhere on a line they do no have to appear in the first column
+Commands cannot follow code on the same line.
+A processed file comments out the commands so they will not work. So the following
+becomes:
+
+//@include somefile.js -> // //@include somefile.js
+
+e.g. Valid
+//@include sample.js
+                    //@include sample.js
+
+The commands for the preprocessor are:
+//@include filename.js
+
+    The include command will only a file to be included one. Please note that a comment
+    line will be inserted into the output file to indicate the source file. A check
+    is done to ensure that the same include file is not used more than once. pp.js will
+    throw an error if the same include sime is attempted in a single job.
+
+//@define var,var,var
+
+    The define command creates a variable. Unlike the C preprocessor you cannot assign
+    a value. All test are simply for existance. More than one define can be done
+    at a time.
+
+//@if var,var,var
+
+    The if command checks for the existance of a given variable. If more than one is
+    specified then the result is OR'd together. Which just means if one is define its
+    true.
+
+//@else
+
+    Hopefully self explainitory.
+
+//@endif
+
+    Hopefully self explainitory.
+
+How to use:
+
+usage: node pp.js with the following options
+
+Source file(s) e.g. --src=file1.js,file2.js
+    --src *required
+Destination to write the file e.g. --dst=output.js
+    --dst *required
+Definition(s) to create e.g. --def=DEBUG,NODE,BROWSER
+    --def
+Enable Debugging
+    --debug
+Help. This Message.
+    --help
+
+Tests:
+
+Sample test file in:
+FILE: test.js
+/* 
+*   a simple test of the if endif logic
+*
+*/
+//@define Hello
+
+//@if Hello
+    This should show
+//@else
+    This should be commented
+//@endif
+
+//@include nestedfile3.js
+
+//@if DEBUG
+    This should be commented
+//@else
+    This should show
+//@endif
+
+//@if DEBUG
+    //@if WIRE
+        This should be commented
+    //@else
+        This should be commented (because its nested out)
+    //@endif
+//@else
+    This should show
+//@endif
+
+//@if DEBUG
+    This should be commented
+//@endif
+//@if DEBUG
+    //@include nofile.js
+//@endif
+
+FILE: nestedfile3.js
+This is the nested file 3
+
+//@if Hello
+    This should show
+//@endif    
+
+Command
+
+Result
+/* 
+*   a simple test of the if endif logic
+*
+*/
+// //@define Hello
+
+// //@if Hello
+    This should show
+// //@else
+//     This should be commented
+// //@endif
+
+// //@include nestedfile3.js
+
+// //@if DEBUG
+//     This should be commented
+// //@else
+//     This should show
+// //@endif
+
+// //@if DEBUG
+//     //@if WIRE
+//         This should be commented
+//     //@else
+//         This should be commented (because its nested out)
+//     //@endif
+// //@else
+    This should show
+// //@endif
+
+// //@if DEBUG
+//     This should be commented
+// //@endif
+// //@if DEBUG
+//     //@include nofile.js
+// //@endif
+
+How to install:
+
+    npm install Node-JavaScript-Preprocessor
+
