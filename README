@@ -63,7 +63,7 @@ The commands for the preprocessor are:
 
 How to use:
 
-usage: node pp.js with the following options
+usage: npm start Node-JavaScript-Preprocessor with the following options
 
 Source file(s) e.g. --src=file1.js,file2.js
     --src *required
@@ -166,7 +166,9 @@ Result
 
 How to install:
 
-Save to a folder of your choice and rune with node.
+    npm install Node-JavaScript-Preprocessor
+    
+To run:
+    npm start Node-JavaScript-Preprocessor
 
-I'm looking into installing with NPM.
 

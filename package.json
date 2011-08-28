@@ -2,7 +2,7 @@
   "author": "Mike Coolin <mcoolin@techie.com> (www.coolwebdevelopment.ca)",
   "name": "Node-JavaScript-Preprocessor",
   "description": "A preprocessor for Javascript that supports defines, if else endif and includes.",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "homepage": "http://coolwebdevelopment.ca/wordpress/index.php/developers-area/javascript/node-javascript-preprocessor/",
   "repository": {
     "type": "git",
@@ -10,7 +10,7 @@
   },
   "main": "pp.js",
   "scripts": {
-    "test": "node pp.js --help"
+    "start": "node server.js --help"
   },
   "engines": {
     "node": "~v0.4.11"

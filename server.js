@@ -43,7 +43,7 @@ var fs = require('fs'),
         note : 'Enable debugging',
         value : false
     }
-}, "Usage: node pp.js with the following options");
+}, "Usage: npm Node-JavaScript-Preprocessor pp.js with the following options");
     
 doPreprocess(opts);    
 
