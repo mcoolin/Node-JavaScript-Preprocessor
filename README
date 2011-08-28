@@ -166,5 +166,7 @@ Result
 
 How to install:
 
-    npm install Node-JavaScript-Preprocessor
+Save to a folder of your choice and rune with node.
+
+I'm looking into installing with NPM.
 
