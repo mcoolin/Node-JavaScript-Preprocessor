@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/mcoolin/Node-JavaScript-Preprocessor.png)](http://travis-ci.org/mcoolin/Node-JavaScript-Preprocessor)
 Purpose:
 
 This preprocessor is used to build JavaScript files together into a single file
